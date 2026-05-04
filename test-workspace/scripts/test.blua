@@ -1,0 +1,3 @@
+-- (c) 2026 Meta Games LLC. All rights reserved.
+
+warn(game, "This is a test script.")

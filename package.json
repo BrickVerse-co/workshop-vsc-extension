@@ -1,0 +1,184 @@
+{
+	"name": "workshop-bricklua",
+	"displayName": "BrickVerse Workshop",
+	"description": "VS Code support for BrickLua in BrickVerse Workshop projects.",
+	"version": "0.0.1",
+	"publisher": "MetaGames",
+	"author": {
+		"name": "Meta Games LLC",
+		"email": "admin@meta-games.org",
+		"url": "https://meta-games.org"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/BrickVerse-co/workshop-vsc-extension.git"
+	},
+	"bugs": {
+		"url": "https://github.com/BrickVerse-co/workshop-vsc-extension/issues"
+	},
+	"homepage": "https://github.com/BrickVerse-co/workshop-vsc-extension#readme",
+	"engines": {
+		"vscode": "^1.90.0"
+	},
+	"activationEvents": [
+		"onLanguage:bricklua",
+		"onLanguage:lua"
+	],
+	"categories": [
+		"Programming Languages"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "bricklua.openControls",
+				"title": "BrickLua: Open Controls"
+			},
+			{
+				"command": "bricklua.openId.openAccountMenu",
+				"title": "BrickLua: Open Account Menu"
+			},
+			{
+				"command": "bricklua.restartServer",
+				"title": "BrickLua: Restart Language Server"
+			},
+			{
+				"command": "bricklua.createProjectConfig",
+				"title": "BrickLua: Create Project Config"
+			},
+			{
+				"command": "bricklua.openSettings",
+				"title": "BrickLua: Open Settings"
+			},
+			{
+				"command": "bricklua.toggleDiscordRpc",
+				"title": "BrickLua: Toggle Discord Rich Presence"
+			},
+			{
+				"command": "bricklua.showInfo",
+				"title": "BrickLua: Extension Info"
+			}
+		],
+		"viewsContainers": {
+			"panel": [
+				{
+					"id": "brickluaPanel",
+					"title": "BrickLua",
+					"icon": "resources/bricklua.png"
+				}
+			]
+		},
+		"views": {
+			"brickluaPanel": [
+				{
+					"id": "brickluaTools",
+					"name": "Tools",
+					"icon": "resources/bricklua.png"
+				}
+			]
+		},
+		"languages": [
+			{
+				"id": "bricklua",
+				"aliases": [
+					"BrickLua",
+					"bricklua"
+				],
+				"extensions": [
+					".blua",
+					".bricklua"
+				],
+				"filenames": [],
+				"configuration": "./language-configuration.json",
+				"icon": {
+					"light": "./resources/bricklua.png",
+					"dark": "./resources/bricklua.png"
+				}
+			}
+		],
+		"grammars": [
+			{
+				"language": "bricklua",
+				"scopeName": "source.bricklua",
+				"path": "./syntaxes/bricklua.tmLanguage.json"
+			}
+		],
+		"configuration": {
+			"title": "BrickLua",
+			"properties": {
+				"bricklua.server.trace": {
+					"type": "string",
+					"default": "off",
+					"enum": [
+						"off",
+						"messages",
+						"verbose"
+					],
+					"description": "Controls LSP trace output for the BrickLua language server."
+				},
+				"bricklua.discordRpc.enabled": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable Discord Rich Presence while editing BrickLua projects."
+				},
+				"bricklua.discordRpc.applicationId": {
+					"type": "string",
+					"default": "1500644112179789894",
+					"description": "Discord application ID used for Rich Presence integration."
+				},
+				"bricklua.openId.discoveryUrl": {
+					"type": "string",
+					"default": "https://api.brickverse.gg/.well-known/openid-configuration",
+					"description": "OpenID discovery endpoint for BrickVerse OAuth."
+				},
+				"bricklua.openId.authorizationEndpoint": {
+					"type": "string",
+					"default": "https://brickverse.gg/oauth/authorize",
+					"description": "OpenID authorization entrypoint URL. This is typically obtained from the discovery document, but can be overridden if needed."
+				},
+				"bricklua.openId.clientId": {
+					"type": "string",
+					"default": "309476186558300160",
+					"description": "OpenID OAuth client ID used by the extension."
+				},
+				"bricklua.openId.redirectUri": {
+					"type": "string",
+					"default": "http://127.0.0.1:38961/auth/callback",
+					"description": "OpenID OAuth redirect URI. Register this exact localhost callback URL in your provider settings."
+				},
+				"bricklua.openId.scopes": {
+					"type": "string",
+					"default": "openid profile email guilds",
+					"description": "Space-separated OpenID scopes requested during sign in."
+				}
+			}
+		},
+		"snippets": [
+			{
+				"language": "bricklua",
+				"path": "./snippets/bricklua.json"
+			}
+		]
+	},
+	"scripts": {
+		"generate:language": "node ./scripts/generate-language-artifacts.mjs",
+		"build": "npm run compile",
+		"compile": "npm run generate:language && tsc -b",
+		"watch": "tsc -b -w",
+		"clean:vsix": "node -e \"require('fs').rmSync('./dist',{recursive:true,force:true});require('fs').mkdirSync('./dist',{recursive:true})\"",
+		"package:vsix": "npm run clean:vsix && npm run compile && npx --yes @vscode/vsce package --out \"./dist/brickverse-workshop.vsix\"",
+		"package:vsix:pre": "npm run clean:vsix && npm run compile && npx --yes @vscode/vsce package --pre-release --out \"./dist/brickverse-workshop-pre.vsix\"",
+		"publish": "npm run package:vsix && npx --yes @vscode/vsce publish --packagePath \"./dist/brickverse-workshop.vsix\"",
+		"publish:pre": "npm run package:vsix:pre && npx --yes @vscode/vsce publish --pre-release --packagePath \"./dist/brickverse-workshop-pre.vsix\""
+	},
+	"dependencies": {
+		"discord-rpc": "^4.0.1",
+		"vscode-languageclient": "^9.0.1"
+	},
+	"devDependencies": {
+		"@vscode/vsce": "^3.2.1",
+		"@types/node": "^20.14.0",
+		"@types/vscode": "^1.90.0",
+		"typescript": "^5.5.0"
+	}
+}

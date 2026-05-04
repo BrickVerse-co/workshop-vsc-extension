@@ -1,0 +1,17 @@
+-- (c) 2026 Meta Games LLC. All rights reserved.
+--[[
+test
+
+cool
+]]
+
+local root: Node = game.Scene
+local startPosition: Vector3 = Vector3.new(0, 5, 0)
+
+function Start()
+	print("BrickLua test workspace loaded", root, startPosition)
+end
+
+require(script)
+
+print("This is a test script.")

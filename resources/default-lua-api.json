@@ -1,0 +1,302 @@
+{
+	"types": [
+		{
+			"name": "nil",
+			"kind": "type",
+			"description": "Represents the absence of a value."
+		},
+		{
+			"name": "boolean",
+			"kind": "type",
+			"description": "Logical true/false value."
+		},
+		{
+			"name": "number",
+			"kind": "type",
+			"description": "Numeric value type."
+		},
+		{
+			"name": "string",
+			"kind": "type",
+			"description": "UTF-8 text value."
+		},
+		{
+			"name": "table",
+			"kind": "type",
+			"description": "Associative array/object container type."
+		},
+		{
+			"name": "function",
+			"kind": "type",
+			"description": "Callable function value."
+		},
+		{
+			"name": "thread",
+			"kind": "type",
+			"description": "Coroutine/thread value."
+		},
+		{
+			"name": "userdata",
+			"kind": "type",
+			"description": "Host-defined native value."
+		}
+	],
+	"constants": [
+		{
+			"name": "true",
+			"kind": "constant",
+			"type": "boolean",
+			"description": "Boolean literal true."
+		},
+		{
+			"name": "false",
+			"kind": "constant",
+			"type": "boolean",
+			"description": "Boolean literal false."
+		},
+		{
+			"name": "nil",
+			"kind": "constant",
+			"type": "nil",
+			"description": "Literal nil value."
+		},
+		{
+			"name": "self",
+			"kind": "constant",
+			"type": "any",
+			"description": "Current object reference in method context."
+		}
+	],
+	"keywords": [
+		{
+			"name": "and",
+			"kind": "keyword",
+			"description": "Logical conjunction operator."
+		},
+		{
+			"name": "break",
+			"kind": "keyword",
+			"description": "Exit the current loop."
+		},
+		{
+			"name": "continue",
+			"kind": "keyword",
+			"description": "Skip to the next loop iteration."
+		},
+		{
+			"name": "do",
+			"kind": "keyword",
+			"description": "Start an explicit block scope."
+		},
+		{
+			"name": "else",
+			"kind": "keyword",
+			"description": "Else branch for conditional control flow."
+		},
+		{
+			"name": "elseif",
+			"kind": "keyword",
+			"description": "Additional conditional branch."
+		},
+		{
+			"name": "end",
+			"kind": "keyword",
+			"description": "Ends blocks such as function/if/do/for/while."
+		},
+		{
+			"name": "for",
+			"kind": "keyword",
+			"description": "Start a numeric or generic loop."
+		},
+		{
+			"name": "function",
+			"kind": "keyword",
+			"signature": "function name(args)",
+			"description": "Declare a function."
+		},
+		{
+			"name": "goto",
+			"kind": "keyword",
+			"description": "Jump to a label in the same function scope."
+		},
+		{
+			"name": "if",
+			"kind": "keyword",
+			"description": "Start a conditional statement."
+		},
+		{
+			"name": "in",
+			"kind": "keyword",
+			"description": "Used in generic for loops."
+		},
+		{
+			"name": "local",
+			"kind": "keyword",
+			"signature": "local name: type = value",
+			"description": "Declare a local variable or local function."
+		},
+		{
+			"name": "not",
+			"kind": "keyword",
+			"description": "Logical negation operator."
+		},
+		{
+			"name": "or",
+			"kind": "keyword",
+			"description": "Logical disjunction operator."
+		},
+		{
+			"name": "repeat",
+			"kind": "keyword",
+			"description": "Start a repeat-until loop."
+		},
+		{
+			"name": "return",
+			"kind": "keyword",
+			"description": "Return from the current function."
+		},
+		{
+			"name": "then",
+			"kind": "keyword",
+			"description": "Starts the consequence block of an if expression."
+		},
+		{
+			"name": "until",
+			"kind": "keyword",
+			"description": "Ends a repeat loop with a condition."
+		},
+		{
+			"name": "while",
+			"kind": "keyword",
+			"description": "Start a while loop."
+		},
+		{
+			"name": "type",
+			"kind": "keyword",
+			"signature": "type Name = Definition",
+			"description": "Declare a BrickLua type alias."
+		}
+	],
+	"functions": [
+		{
+			"name": "assert",
+			"kind": "function",
+			"signature": "assert(v: any, message?: string): any",
+			"description": "Raises an error when v is false or nil; otherwise returns v."
+		},
+		{
+			"name": "error",
+			"kind": "function",
+			"signature": "error(message: any, level?: number): never",
+			"description": "Raises an error with an optional stack level."
+		},
+		{
+			"name": "getmetatable",
+			"kind": "function",
+			"signature": "getmetatable(value: any): table | nil",
+			"description": "Gets a value metatable when accessible."
+		},
+		{
+			"name": "ipairs",
+			"kind": "function",
+			"signature": "ipairs(t: table): (iterator: function, t: table, index: number)",
+			"description": "Numeric-key table iteration helper."
+		},
+		{
+			"name": "next",
+			"kind": "function",
+			"signature": "next(t: table, index?: any): (nextIndex: any, value: any)",
+			"description": "Returns the next key-value pair in a table."
+		},
+		{
+			"name": "pairs",
+			"kind": "function",
+			"signature": "pairs(t: table): (iterator: function, t: table, index: any)",
+			"description": "Generic table iteration helper."
+		},
+		{
+			"name": "pcall",
+			"kind": "function",
+			"signature": "pcall(fn: function, ...args: any[]): (ok: boolean, ...results: any[])",
+			"description": "Calls a function in protected mode."
+		},
+		{
+			"name": "print",
+			"kind": "function",
+			"signature": "print(...values: any[]): void",
+			"description": "Writes values to standard output/log."
+		},
+		{
+			"name": "rawequal",
+			"kind": "function",
+			"signature": "rawequal(a: any, b: any): boolean",
+			"description": "Compares values without metamethods."
+		},
+		{
+			"name": "rawget",
+			"kind": "function",
+			"signature": "rawget(t: table, index: any): any",
+			"description": "Gets a table value without metamethods."
+		},
+		{
+			"name": "rawlen",
+			"kind": "function",
+			"signature": "rawlen(value: table | string): number",
+			"description": "Gets raw length without metamethods."
+		},
+		{
+			"name": "rawset",
+			"kind": "function",
+			"signature": "rawset(t: table, index: any, value: any): table",
+			"description": "Sets a table value without metamethods."
+		},
+		{
+			"name": "select",
+			"kind": "function",
+			"signature": "select(index: number | '#', ...args: any[]): any",
+			"description": "Select values from varargs."
+		},
+		{
+			"name": "setmetatable",
+			"kind": "function",
+			"signature": "setmetatable(t: table, mt: table | nil): table",
+			"description": "Sets or clears a table metatable."
+		},
+		{
+			"name": "require",
+			"kind": "function",
+			"signature": "require(moduleName: string): any",
+			"description": "Loads and returns a module value."
+		},
+		{
+			"name": "tonumber",
+			"kind": "function",
+			"signature": "tonumber(value: any, base?: number): number | nil",
+			"description": "Converts a value to number when possible."
+		},
+		{
+			"name": "tostring",
+			"kind": "function",
+			"signature": "tostring(value: any): string",
+			"description": "Converts a value to string representation."
+		},
+		{
+			"name": "type",
+			"kind": "function",
+			"signature": "type(value: any): string",
+			"description": "Returns the Lua runtime type name."
+		},
+		{
+			"name": "xpcall",
+			"kind": "function",
+			"signature": "xpcall(fn: function, err: function, ...args: any[]): (ok: boolean, ...results: any[])",
+			"description": "Protected call with custom error handler."
+		},
+		{
+			"name": "warn",
+			"kind": "function",
+			"signature": "warn(...values: any[]): void",
+			"description": "Writes warning output."
+		}
+	]
+}

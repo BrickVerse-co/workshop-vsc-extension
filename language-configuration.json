@@ -1,0 +1,92 @@
+{
+  "comments": {
+    "lineComment": "--",
+    "blockComment": [
+      "--[[",
+      "]]"
+    ]
+  },
+  "brackets": [
+    [
+      "{",
+      "}"
+    ],
+    [
+      "[",
+      "]"
+    ],
+    [
+      "(",
+      ")"
+    ]
+  ],
+  "autoClosingPairs": [
+    {
+      "open": "{",
+      "close": "}"
+    },
+    {
+      "open": "[",
+      "close": "]"
+    },
+    {
+      "open": "(",
+      "close": ")"
+    },
+    {
+      "open": "\"",
+      "close": "\"",
+      "notIn": [
+        "string"
+      ]
+    },
+    {
+      "open": "'",
+      "close": "'",
+      "notIn": [
+        "string",
+        "comment"
+      ]
+    },
+    {
+      "open": "--[[",
+      "close": "]]",
+      "notIn": [
+        "string"
+      ]
+    }
+  ],
+  "surroundingPairs": [
+    [
+      "{",
+      "}"
+    ],
+    [
+      "[",
+      "]"
+    ],
+    [
+      "(",
+      ")"
+    ],
+    [
+      "\"",
+      "\""
+    ],
+    [
+      "'",
+      "'"
+    ]
+  ],
+  "indentationRules": {
+    "increaseIndentPattern": "^\\s*((local\\s+)?function\\b.*|if\\b.*\\bthen\\b|for\\b.*\\bdo\\b|while\\b.*\\bdo\\b|repeat\\b|do\\b)\\s*$",
+    "decreaseIndentPattern": "^\\s*(end|elseif\\b.*\\bthen\\b|else\\b|until\\b.*)\\s*$"
+  },
+  "folding": {
+    "markers": {
+      "start": "^\\s*--\\s*#region\\b",
+      "end": "^\\s*--\\s*#endregion\\b"
+    }
+  },
+  "$comment": "AUTO-GENERATED FILE. DO NOT EDIT. Run npm run generate:language."
+}

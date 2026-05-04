@@ -1,0 +1,98 @@
+{
+	"globals": {
+		"game": {
+			"description": "Root scene graph service used to query and parent world objects.",
+			"documentation": "Use `game` as the entry point for world objects and runtime scene traversal.",
+			"examples": ["local mapRoot: Node = game.Scene:FindFirstChild(\"Map\")"]
+		},
+		"script": {
+			"description": "Reference to the currently executing script/module instance.",
+			"documentation": "Use `script` for self-relative module references and hierarchy traversal, similar to Roblox Luau.",
+			"examples": [
+				"local module = require(script.Parent.Shared.Utils)",
+				"print(script.Name, script.Parent)"
+			]
+		},
+		"game.Players": {
+			"description": "Service for player lifecycle, local player lookup, and multiplayer state.",
+			"documentation": "Use `game.Players` to access connected users and subscribe to player join/leave flows.",
+			"examples": [
+				"local current = game.Players.LocalPlayer",
+				"game.Players.PlayerAdded:Connect(function(player)\n\tprint(player.Name)\nend)"
+			]
+		}
+	},
+	"types": {
+		"Node": {
+			"description": "Base class for scene objects with hierarchy, tagging, and event APIs.",
+			"documentation": "Equivalent to a core runtime object in other engines. Most world entities inherit from `Node` and expose child traversal and signal patterns.",
+			"examples": [
+				"local enemy: Node = game.Scene:FindFirstChild(\"Enemy\")",
+				"if enemy and enemy:IsA(\"Node\") then\n\tenemy.Name = \"EnemyBoss\"\nend"
+			]
+		},
+		"Promise": {
+			"description": "Async primitive for composing non-blocking operations and error handling.",
+			"documentation": "Use Promise chains for task orchestration (`andThen`, `catch`, `finally`) similar to TypeScript `Promise<T>` workflows."
+		},
+		"Vector3": {
+			"description": "Immutable 3D vector used for positions, directions, and velocities.",
+			"documentation": "Common operations include normalization, magnitude checks, and arithmetic composition. Similar to Luau vector math APIs.",
+			"examples": [
+				"local up: Vector3 = Vector3.new(0, 1, 0)",
+				"local velocity: Vector3 = direction * speed"
+			]
+		},
+		"Script": {
+			"description": "Executable script/module object available as `script` during execution.",
+			"documentation": "Exposes hierarchy information like `Parent`, `Name`, and allows self-relative module composition patterns.",
+			"examples": [
+				"local sibling = require(script.Parent.SiblingModule)",
+				"if script.Parent then\n\tprint(script.Parent.Name)\nend"
+			]
+		}
+	},
+	"functions": {
+		"typeof": {
+			"description": "Returns the BrickLua runtime type tag for a value.",
+			"documentation": "Prefer `typeof` for engine-aware checks (`Node`, `Vector3`, etc.) where plain Lua `type` may be too generic.",
+			"parameters": [
+				{
+					"name": "value",
+					"type": "any",
+					"description": "Runtime value to inspect."
+				}
+			],
+			"returns": {
+				"type": "string",
+				"description": "Engine-aware runtime type name."
+			},
+			"examples": [
+				"if typeof(target) == \"Node\" then\n\tprint(target.Name)\nend"
+			]
+		},
+		"validateType": {
+			"description": "Validates a value against an expected BrickLua/engine type name.",
+			"documentation": "Useful for defensive scripting at module boundaries where untyped payloads are consumed.",
+			"parameters": [
+				{
+					"name": "value",
+					"type": "any",
+					"description": "Value to validate."
+				},
+				{
+					"name": "expectedType",
+					"type": "string",
+					"description": "Expected runtime type name, e.g. `Node` or `Vector3`."
+				}
+			],
+			"returns": {
+				"type": "boolean",
+				"description": "True when value matches expected type; otherwise false."
+			},
+			"examples": [
+				"if not validateType(payload.target, \"Node\") then\n\terror(\"target must be Node\")\nend"
+			]
+		}
+	}
+}

@@ -1,0 +1,53 @@
+{
+	"globals": [
+		{
+			"name": "game",
+			"kind": "service",
+			"type": "game"
+		},
+		{
+			"name": "script",
+			"kind": "service",
+			"type": "Script"
+		},
+		{
+			"name": "game.Players",
+			"kind": "service",
+			"type": "Players"
+		}
+	],
+	"types": [
+		{
+			"name": "Node",
+			"kind": "class",
+			"signature": "class Node"
+		},
+		{
+			"name": "Promise",
+			"kind": "class",
+			"signature": "class Promise<T>"
+		},
+		{
+			"name": "Vector3",
+			"kind": "struct",
+			"signature": "struct Vector3"
+		},
+		{
+			"name": "Script",
+			"kind": "class",
+			"signature": "class Script"
+		}
+	],
+	"functions": [
+		{
+			"name": "typeof",
+			"kind": "function",
+			"signature": "typeof(value: any): string"
+		},
+		{
+			"name": "validateType",
+			"kind": "function",
+			"signature": "validateType(value: any, expectedType: string): boolean"
+		}
+	]
+}

@@ -1,0 +1,17 @@
+{
+	"Function": {
+		"prefix": "fn",
+		"body": ["function ${1:name}(${2:args})", "\t$0", "end"],
+		"description": "Create a BrickLua function"
+	},
+	"Typed Local": {
+		"prefix": "localt",
+		"body": ["local ${1:name} = ${3:value}"],
+		"description": "Create a typed local variable"
+	},
+	"Promise": {
+		"prefix": "promise",
+		"body": ["Promise.new(function(resolve, reject)", "\t$0", "end)"],
+		"description": "Create a Promise"
+	}
+}
