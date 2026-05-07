@@ -128,7 +128,7 @@
         },
         {
           "name": "support.type.engine.bricklua",
-          "match": "\\b(Node|Promise|Script|Vector3|game|game\\.Players|script)\\b"
+          "match": "\\b(AssetMesh|BESignal|Brick|BrickBase|Dynamic|Dynamic2D|Dynamic3D|DynamicModule|DynamicScript|Frame|Humanoid|InputService|MeshBrick|NetworkEvent|NetworkService|Player|RenderService|Scene|SocialService|Sound|TextLabel|game\\.InputService|game\\.NetworkEvent|game\\.NetworkService|script)\\b"
         },
         {
           "name": "entity.name.type.bricklua",
@@ -152,7 +152,7 @@
       "patterns": [
         {
           "name": "support.class.engine-global.bricklua",
-          "match": "\\b(Players|game|game\\.Players|script)\\b"
+          "match": "\\b(InputService|NetworkEvent|NetworkService|game|game\\.InputService|game\\.NetworkEvent|game\\.NetworkService|script)\\b"
         }
       ]
     },
