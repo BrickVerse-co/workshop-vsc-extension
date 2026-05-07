@@ -1,41 +1,1225 @@
 {
 	"globals": [
 		{
-			"name": "game",
-			"kind": "service",
-			"type": "game"
-		},
-		{
 			"name": "script",
 			"kind": "service",
-			"type": "Script"
+			"type": "DynamicScript"
 		},
 		{
-			"name": "game.Players",
+			"name": "game.NetworkService",
 			"kind": "service",
-			"type": "Players"
+			"type": "NetworkService"
+		},
+		{
+			"name": "game.NetworkEvent",
+			"kind": "service",
+			"type": "NetworkEvent"
+		},
+		{
+			"name": "game.InputService",
+			"kind": "service",
+			"type": "InputService"
 		}
 	],
 	"types": [
 		{
-			"name": "Node",
+			"name": "AssetMesh",
 			"kind": "class",
-			"signature": "class Node"
+			"signature": "class AssetMesh extends ArrayMesh",
+			"inherits": "ArrayMesh",
+			"properties": [
+				{
+					"name": "MeshID",
+					"type": "any",
+					"description": "Specifies the asset id of the mesh",
+					"readOnly": false
+				}
+			]
 		},
 		{
-			"name": "Promise",
+			"name": "BESignal",
 			"kind": "class",
-			"signature": "class Promise<T>"
+			"signature": "class BESignal extends Node",
+			"inherits": "Node",
+			"methods": [
+				{
+					"name": "Connect",
+					"signature": "Connect(...): void",
+					"description": "Connect to signal"
+				},
+				{
+					"name": "Fire",
+					"signature": "Fire(...): void",
+					"description": "Fire signal"
+				}
+			]
 		},
 		{
-			"name": "Vector3",
-			"kind": "struct",
-			"signature": "struct Vector3"
+			"name": "Dynamic",
+			"kind": "class",
+			"signature": "class Dynamic extends Node",
+			"inherits": "Node",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				}
+			]
 		},
 		{
-			"name": "Script",
+			"name": "Dynamic3D",
 			"kind": "class",
-			"signature": "class Script"
+			"signature": "class Dynamic3D extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "BrickBase",
+			"kind": "class",
+			"signature": "class BrickBase extends Dynamic3D",
+			"inherits": "Dynamic3D",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Anchored",
+					"type": "any",
+					"description": "If gravity impacts object",
+					"readOnly": false
+				},
+				{
+					"name": "Collisions",
+					"type": "any",
+					"description": "If dynamic has collisions",
+					"readOnly": false
+				},
+				{
+					"name": "Visible",
+					"type": "any",
+					"description": "If the object is visible",
+					"readOnly": false
+				},
+				{
+					"name": "BaseColor",
+					"type": "any",
+					"description": "The base color of the object",
+					"readOnly": false
+				},
+				{
+					"name": "Transparency",
+					"type": "any",
+					"description": "The transparency of the object",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Brick",
+			"kind": "class",
+			"signature": "class Brick extends BrickBase",
+			"inherits": "BrickBase",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Anchored",
+					"type": "any",
+					"description": "If gravity impacts object",
+					"readOnly": false
+				},
+				{
+					"name": "Collisions",
+					"type": "any",
+					"description": "If dynamic has collisions",
+					"readOnly": false
+				},
+				{
+					"name": "Visible",
+					"type": "any",
+					"description": "If the object is visible",
+					"readOnly": false
+				},
+				{
+					"name": "BaseColor",
+					"type": "any",
+					"description": "The base color of the object",
+					"readOnly": false
+				},
+				{
+					"name": "Transparency",
+					"type": "any",
+					"description": "The transparency of the object",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Dynamic2D",
+			"kind": "class",
+			"signature": "class Dynamic2D extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Frame",
+			"kind": "class",
+			"signature": "class Frame extends Dynamic2D",
+			"inherits": "Dynamic2D",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Humanoid",
+			"kind": "class",
+			"signature": "class Humanoid extends Dynamic3D",
+			"inherits": "Dynamic3D",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "HumanoidID",
+					"type": "any",
+					"description": "The user this humanoid is representing",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "InputService",
+			"kind": "class",
+			"signature": "class InputService extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "InputOccured",
+					"type": "any",
+					"description": "This returns the inputOccured signal",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "MeshBrick",
+			"kind": "class",
+			"signature": "class MeshBrick extends BrickBase",
+			"inherits": "BrickBase",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Anchored",
+					"type": "any",
+					"description": "If gravity impacts object",
+					"readOnly": false
+				},
+				{
+					"name": "Collisions",
+					"type": "any",
+					"description": "If dynamic has collisions",
+					"readOnly": false
+				},
+				{
+					"name": "Visible",
+					"type": "any",
+					"description": "If the object is visible",
+					"readOnly": false
+				},
+				{
+					"name": "BaseColor",
+					"type": "any",
+					"description": "The base color of the object",
+					"readOnly": false
+				},
+				{
+					"name": "Transparency",
+					"type": "any",
+					"description": "The transparency of the object",
+					"readOnly": false
+				},
+				{
+					"name": "MeshID",
+					"type": "any",
+					"description": "Specifies the asset id of the mesh",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "DynamicModule",
+			"kind": "class",
+			"signature": "class DynamicModule extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Src",
+					"type": "any",
+					"description": "Script source",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "NetworkEvent",
+			"kind": "class",
+			"signature": "class NetworkEvent extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "EventRecieved",
+					"type": "any",
+					"description": "This returns the eventRecieved signal",
+					"readOnly": false
+				}
+			],
+			"methods": [
+				{
+					"name": "FireServer",
+					"signature": "FireServer(...): void",
+					"description": "Fire event to server"
+				},
+				{
+					"name": "FireAllClients",
+					"signature": "FireAllClients(...): void",
+					"description": "Fire event to all clients"
+				}
+			]
+		},
+		{
+			"name": "NetworkService",
+			"kind": "class",
+			"signature": "class NetworkService extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "ClientHasConnected",
+					"type": "any",
+					"description": "This returns the clientHasConnected signal",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Player",
+			"kind": "class",
+			"signature": "class Player extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "PlayerID",
+					"type": "any",
+					"description": "This returns the playerID",
+					"readOnly": true
+				},
+				{
+					"name": "Username",
+					"type": "any",
+					"description": "This returns the username",
+					"readOnly": true
+				}
+			]
+		},
+		{
+			"name": "RenderService",
+			"kind": "class",
+			"signature": "class RenderService extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Scene",
+			"kind": "class",
+			"signature": "class Scene extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "DynamicScript",
+			"kind": "class",
+			"signature": "class DynamicScript extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Src",
+					"type": "any",
+					"description": "Specifies script source",
+					"readOnly": false
+				},
+				{
+					"name": "Server",
+					"type": "any",
+					"description": "Specifies if the script is to run on the server",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "SocialService",
+			"kind": "class",
+			"signature": "class SocialService extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				}
+			]
+		},
+		{
+			"name": "Sound",
+			"kind": "class",
+			"signature": "class Sound extends Dynamic",
+			"inherits": "Dynamic",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "AssetID",
+					"type": "any",
+					"description": "This returns the asset id",
+					"readOnly": false
+				}
+			],
+			"methods": [
+				{
+					"name": "Play",
+					"signature": "Play(...): void",
+					"description": "Plays Sound"
+				}
+			]
+		},
+		{
+			"name": "TextLabel",
+			"kind": "class",
+			"signature": "class TextLabel extends Dynamic2D",
+			"inherits": "Dynamic2D",
+			"properties": [
+				{
+					"name": "Name",
+					"type": "any",
+					"description": "Name of the dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Parent",
+					"type": "any",
+					"description": "LINK",
+					"readOnly": false
+				},
+				{
+					"name": "Type",
+					"type": "any",
+					"description": "Type of dynamic",
+					"readOnly": true
+				},
+				{
+					"name": "Loaded",
+					"type": "any",
+					"description": "If the dynamic is loaded",
+					"readOnly": true
+				},
+				{
+					"name": "Locked",
+					"type": "any",
+					"description": "Check if dynamic is locked",
+					"readOnly": false
+				},
+				{
+					"name": "Replicated",
+					"type": "any",
+					"description": "Check if dynamic is replicated",
+					"readOnly": false
+				},
+				{
+					"name": "Position",
+					"type": "any",
+					"description": "This returns the position of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Rotation",
+					"type": "any",
+					"description": "This returns the rotation of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Size",
+					"type": "any",
+					"description": "This returns the size of a dynamic",
+					"readOnly": false
+				},
+				{
+					"name": "Text",
+					"type": "any",
+					"description": "Text for the label",
+					"readOnly": false
+				},
+				{
+					"name": "FontSize",
+					"type": "any",
+					"description": "Font size",
+					"readOnly": false
+				}
+			]
 		}
 	],
 	"functions": [
