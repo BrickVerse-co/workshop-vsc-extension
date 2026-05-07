@@ -8,6 +8,15 @@ cool
 local root: Node = game.Scene
 local startPosition: Vector3 = Vector3.new(0, 5, 0)
 
+type test = {
+	name: string,
+	value: number,
+}
+
+function testFunction(param: string): string
+	return "Hello, " .. param
+end
+
 function Start()
 	print("BrickLua test workspace loaded", root, startPosition)
 end
